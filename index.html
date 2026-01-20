@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Portfolio | Soho Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,600&family=Inter:wght@300;400&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg: #F5F5F3;        /* Soho Gallery White */
+            --text: #1A1A1A;      /* Deep Onyx */
+            --accent: #2A52BE;    /* Professional Cobalt */
+            --card-bg: #FFFFFF;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Header & Intro --- */
+        header {
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 10%;
+        }
+
+        .eyebrow {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 600;
+            line-height: 1.1;
+        }
+
+        /* --- Sticky Stack Container --- */
+        .stack-container {
+            padding: 0 5% 10vh 5%;
+        }
+
+        .project-card {
+            position: sticky;
+            top: 10vh; /* Where the card "sticks" while others slide over */
+            height: 70vh;
+            background: var(--card-bg);
+            margin-bottom: 15vh; /* Space for the next card to appear */
+            border: 1px solid rgba(0,0,0,0.05);
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            align-items: center;
+            padding: 3rem;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.04);
+            transition: transform 0.4s ease-out;
+        }
+
+        /* Responsive Grid for Mobile */
+        @media (max-width: 900px) {
+            .project-card {
+                grid-template-columns: 1fr;
+                height: auto;
+                padding: 2rem;
+                top: 5vh;
+            }
+            .image-box { order: -1; margin-bottom: 1.5rem; }
+        }
+
+        .project-info { padding-right: 2rem; }
+
+        .project-info h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            margin: 0.5rem 0 1.5rem 0;
+        }
+
+        .image-box {
+            background: #eee;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: 2px;
+        }
+
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: filter 0.5s ease;
+        }
+
+        .project-card:hover img {
+            filter: grayscale(0%);
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 1.5rem;
+            border: 1px solid var(--text);
+            text-decoration: none;
+            color: var(--text);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: var(--text);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <p class="eyebrow">// Junior Web Developer</p>
+        <h1>The Business <br>of Coding.</h1>
+    </header>
+
+    <div class="stack-container">
+        <section class="project-card">
+            <div class="project-info">
+                <p class="eyebrow">01. Web Application</p>
+                <h2>Asset Management Interface</h2>
+                <p>Focusing on high-performance data rendering and clean UI architecture for corporate clients.</p>
+                <a href="#" class="btn">DISCOVER CODE</a>
+            </div>
+            <div class="image-box">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Tech project">
+            </div>
+        </section>
+
+        <section class="project-card">
+            <div class="project-info">
+                <p class="eyebrow">02. E-Commerce</p>
+                <h2>Luxury Retail Engine</h2>
+                <p>A headless Shopify implementation using Next.js for lightning-fast Soho-style shopping experiences.</p>
+                <a href="#" class="btn">DISCOVER CODE</a>
+            </div>
+            <div class="image-box">
+                <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80" alt="Retail project">
+            </div>
+        </section>
+
+        <section class="project-card">
+            <div class="project-info">
+                <p class="eyebrow">03. Open Source</p>
+                <h2>System Log Framework</h2>
+                <p>Developing tools that help other developers bridge the gap between business logic and visual design.</p>
+                <a href="#" class="btn">DISCOVER CODE</a>
+            </div>
+            <div class="image-box">
+                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" alt="Code project">
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Optional: Adding a subtle "shrink" effect to the bottom card as it gets covered
+        window.addEventListener('scroll', () => {
+            const cards = document.querySelectorAll('.project-card');
+            cards.forEach(card => {
+                const top = card.getBoundingClientRect().top;
+                if (top < 100 && top > 0) {
+                    card.style.transform = `scale(${0.95 + (top/2000)})`;
+                } else {
+                    card.style.transform = `scale(1)`;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
