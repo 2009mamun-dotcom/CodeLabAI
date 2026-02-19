@@ -1,24 +1,47 @@
-async function generateWebsite() {
-    const prompt = document.getElementById("prompt").value;
-    const fileInput = document.getElementById("imageInput");
-    const resultEl = document.getElementById("result");
-    resultEl.textContent = "Generating...";
+const USERNAME = "01885412300";
+const PASSWORD = "17648";
 
+function checkLogin() {
+    const u = document.getElementById('username').value;
+    const p = document.getElementById('password').value;
+
+    if (u === USERNAME && p === PASSWORD) {
+        document.getElementById('login-section').style.display = 'none';
+        document.getElementById('main-content').style.display = 'block';
+        fetchData();
+    } else {
+        alert("Incorrect login details!");
+    }
+}
+
+async function fetchData() {
     try {
-        let formData = new FormData();
-        formData.append("prompt", prompt);
-        if (fileInput.files.length > 0) {
-            formData.append("image", fileInput.files[0]);
-        }
-
-        const res = await fetch("/generate", {
-            method: "POST",
-            body: formData
+        const response = await fetch('data.json');
+        const data = await response.json();
+        
+        // Gallery Load
+        const gallery = document.getElementById('photo-gallery');
+        data.gallery.forEach(item => {
+            gallery.innerHTML += `
+                <div class="photo-card">
+                    <img src="${item.url}" alt="photo">
+                    <div style="padding:15px">
+                        <p>${item.caption}</p>
+                        <a href="${item.url}" download style="color:#00cec9; text-decoration:none; font-size:14px">Download File</a>
+                    </div>
+                </div>
+            `;
         });
 
-        const data = await res.json();
-        resultEl.textContent = data.code;
-    } catch (err) {
-        resultEl.textContent = "Error: " + err.message;
+        // Contact Load
+        const contact = document.getElementById('contact-details');
+        contact.innerHTML = `
+            <h2>Contact Details</h2>
+            <p><strong>Name:</strong> ${data.contact.name}</p>
+            <p><strong>Address:</strong> ${data.contact.address}</p>
+            <p><strong>Phone:</strong> ${data.contact.number}</p>
+        `;
+    } catch (error) {
+        console.error("Error loading JSON:", error);
     }
 }
