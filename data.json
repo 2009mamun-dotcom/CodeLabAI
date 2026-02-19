@@ -1,0 +1,17 @@
+{
+    "gallery": [
+        { 
+            "url": "images/photo1.jpg", 
+            "caption": "My First Photo" 
+        },
+        { 
+            "url": "images/photo2.jpg", 
+            "caption": "Personal Moment" 
+        }
+    ],
+    "contact": {
+        "name": "Abir Hasan",
+        "address": "Dhaka, Bangladesh",
+        "number": "01885412300"
+    }
+}
