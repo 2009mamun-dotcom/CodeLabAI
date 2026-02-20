@@ -1,106 +1,81 @@
-:root {
-    --primary: #a29bfe;
-    --accent: #00cec9;
-    --bg: #0f0c29;
+/* General Setup */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', sans-serif; height: 100vh; color: white; overflow: hidden; }
+
+/* Background with Blur Transition */
+.bg-image {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-size: cover; background-position: center;
+    z-index: -1; transition: filter 0.8s ease, transform 0.8s ease;
+}
+.blur-bg { filter: blur(15px) brightness(0.4); transform: scale(1.1); }
+
+.center-container {
+    height: 100vh; display: flex; flex-direction: column; 
+    justify-content: center; align-items: center;
 }
 
-body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
-    color: white;
-    min-height: 100vh;
+/* Neon Lighting Card Animation */
+.neon-wrapper { position: relative; cursor: pointer; }
+.neon-card {
+    padding: 30px 50px; background: rgba(0,0,0,0.8);
+    border-radius: 10px; border: 2px solid #00cec9;
+    box-shadow: 0 0 15px #00cec9; transition: 0.5s;
 }
+.neon-card h2 { letter-spacing: 3px; font-size: 1.5rem; color: #00cec9; }
 
-/* Glassmorphism Design */
-.glass-card {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 3rem;
-    border-radius: 20px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-    text-align: center;
-    animation: fadeIn 1s ease;
+/* Lighting Border Effect */
+.neon-card::before {
+    content: ''; position: absolute; top: -5px; left: -5px; right: -5px; bottom: -5px;
+    border: 2px solid #00cec9; border-radius: 15px;
+    animation: pulse 1.5s infinite; opacity: 0.5;
 }
-
-.card-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-input {
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    border-radius: 8px;
-    border: none;
-    background: rgba(255,255,255,0.1);
-    color: white;
-    box-sizing: border-box;
-}
-
-button {
-    background: var(--primary);
-    color: white;
-    border: none;
-    padding: 12px 30px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: 0.3s;
-}
-
-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(162, 155, 254, 0.4);
-}
-
-/* Gallery Grid */
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-    padding: 40px;
-}
-
-.photo-card {
-    background: rgba(255,255,255,0.05);
-    border-radius: 15px;
-    overflow: hidden;
-    transition: 0.4s;
-    animation: slideUp 0.5s ease;
-}
-
-.photo-card:hover {
-    transform: scale(1.03);
-}
-
-.photo-card img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-}
-
-.info-section {
-    background: rgba(0,0,0,0.3);
-    margin: 40px;
-    padding: 25px;
-    border-radius: 15px;
-    border-left: 4px solid var(--accent);
-}
-
-/* Animations */
-@keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
-@keyframes slideUp { from {transform: translateY(30px); opacity: 0;} to {transform: translateY(0); opacity: 1;} }
-.highlight {
-    animation: pulse 1s infinite alternate;
-    border: 2px solid var(--accent) !important;
-}
-
 @keyframes pulse {
-    from { box-shadow: 0 0 5px var(--accent); }
-    to { box-shadow: 0 0 20px var(--accent); }
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(1.1); opacity: 0; }
 }
+
+.neon-card:hover {
+    box-shadow: 0 0 40px #00cec9, inset 0 0 20px #00cec9;
+    transform: translateY(-5px);
+}
+
+/* Login Glassmorphism */
+.glass-login {
+    background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(25px);
+    padding: 40px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2);
+    width: 350px; text-align: center; animation: slideIn 0.5s forwards;
+}
+input {
+    width: 100%; padding: 12px; margin: 10px 0; border-radius: 8px;
+    border: none; background: rgba(255,255,255,0.15); color: white; outline: none;
+}
+button {
+    background: #00cec9; color: black; border: none; padding: 12px;
+    border-radius: 8px; cursor: pointer; font-weight: bold; width: 100%; transition: 0.3s;
+}
+button:hover { background: #019a96; transform: scale(1.02); }
+
+/* Dashboard Choice Cards */
+.choice-container { display: flex; gap: 20px; margin-bottom: 30px; }
+.choice-card {
+    background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(10px);
+    padding: 30px; border-radius: 20px; width: 220px; text-align: center;
+    cursor: pointer; transition: 0.4s; border: 1px solid rgba(255,255,255,0.1);
+}
+.choice-card:hover { background: #00cec9; color: black; transform: translateY(-10px); }
+.choice-card .icon { font-size: 40px; margin-bottom: 15px; }
+
+/* Views */
+.content-view {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.95); padding: 40px; overflow-y: auto; z-index: 10;
+}
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+.photo-item { background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; text-align: center; }
+.photo-item img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; }
+
+.logout-btn { background: #ff7675; width: 150px; }
+.back-btn { width: 100px; margin-bottom: 20px; background: #636e72; }
+
+@keyframes slideIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
