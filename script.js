@@ -1,95 +1,77 @@
-const USERNAME = "01885412300";
-const PASSWORD = "17648";
+let database = null;
 
-function checkLogin() {
-    const u = document.getElementById('username').value;
-    const p = document.getElementById('password').value;
+// Transition to Login
+function showLogin() {
+    document.getElementById('access-trigger-section').style.display = 'none';
+    document.getElementById('bg-image').classList.add('blur-bg');
+    document.getElementById('login-section').style.display = 'flex';
+}
 
-    if (u === USERNAME && p === PASSWORD) {
+// Login Authentication
+async function checkLogin() {
+    const user = document.getElementById('username').value;
+    const pass = document.getElementById('password').value;
+
+    if (user === "01885412300" && pass === "17648") {
         document.getElementById('login-section').style.display = 'none';
-        document.getElementById('main-content').style.display = 'block';
-        fetchData();
+        document.getElementById('dashboard').style.display = 'flex';
+        // Fetch JSON Data
+        const res = await fetch('data.json');
+        database = await res.json();
     } else {
-        alert("Incorrect login details!");
+        alert("Access Denied! Check Credentials.");
     }
 }
 
-async function fetchData() {
-    try {
-        const response = await fetch('data.json');
-        const data = await response.json();
-        
-        // Gallery Load
-        const gallery = document.getElementById('photo-gallery');
-        data.gallery.forEach(item => {
-            gallery.innerHTML += `
-                <div class="photo-card">
-                    <img src="${item.url}" alt="photo">
-                    <div style="padding:15px">
-                        <p>${item.caption}</p>
-                        <a href="${item.url}" download style="color:#00cec9; text-decoration:none; font-size:14px">Download File</a>
-                    </div>
-                </div>
-            `;
-        });
-
-        // Contact Load
-        const contact = document.getElementById('contact-details');
-        contact.innerHTML = `
-            <h2>Contact Details</h2>
-            <p><strong>Name:</strong> ${data.contact.name}</p>
-            <p><strong>Address:</strong> ${data.contact.address}</p>
-            <p><strong>Phone:</strong> ${data.contact.number}</p>
-        `;
-    } catch (error) {
-        console.error("Error loading JSON:", error);
-    }
-}
-// Agere motoi thakbe, sudhu search function-ti niche add hobe
-let allContacts = []; // Data store korar jonno
-
-async function fetchData() {
-    try {
-        const response = await fetch('data.json');
-        const data = await response.json();
-        allContacts = [data.contact]; // JSON theke contact nilam
-        
-        displayContacts(allContacts); // Initial display
-        loadGallery(data.gallery);
-    } catch (error) {
-        console.error("Error:", error);
-    }
+// Module Navigation
+function showModule(id) {
+    document.getElementById('dashboard').style.display = 'none';
+    document.getElementById(id).style.display = 'block';
+    if(id === 'gallery-view') renderGallery();
+    else renderContact();
 }
 
-// Contact dekhano function
-function displayContacts(contacts) {
-    const container = document.getElementById('contact-details');
-    container.innerHTML = ""; 
+function goBack() {
+    document.querySelectorAll('.content-view').forEach(v => v.style.display = 'none');
+    document.getElementById('dashboard').style.display = 'flex';
+}
 
-    contacts.forEach(c => {
+// Content Rendering
+function renderGallery() {
+    const container = document.getElementById('photo-gallery');
+    container.innerHTML = "";
+    database.gallery.forEach(item => {
         container.innerHTML += `
-            <div class="contact-card" style="padding:15px; background:rgba(255,255,255,0.05); border-radius:10px; margin-bottom:10px;">
-                <p><strong>Name:</strong> ${c.name}</p>
-                <p><strong>Address:</strong> ${c.address}</p>
-                <p><strong>Phone:</strong> ${c.number}</p>
-            </div>
-        `;
+            <div class="photo-item">
+                <img src="${item.url}" alt="image">
+                <p style="margin: 10px 0;">${item.caption}</p>
+                <a href="${item.url}" download style="color:#00cec9; text-decoration:none;">Download .JPG</a>
+            </div>`;
     });
 }
 
-// Search Logic
+function renderContact(filteredData = null) {
+    const container = document.getElementById('contact-details');
+    container.innerHTML = "";
+    const data = filteredData || [database.contact];
+    
+    data.forEach(c => {
+        container.innerHTML += `
+            <div style="background:rgba(255,255,255,0.05); padding:20px; border-radius:10px; margin-top:15px; border-left: 4px solid #00cec9;">
+                <p><strong>Name:</strong> ${c.name}</p>
+                <p><strong>Address:</strong> ${c.address}</p>
+                <p><strong>Phone:</strong> ${c.number}</p>
+            </div>`;
+    });
+}
+
+// Search Function
 function searchContact() {
     const query = document.getElementById('contactSearch').value.toLowerCase();
-    
-    const filtered = allContacts.filter(c => 
-        c.name.toLowerCase().includes(query) || 
-        c.number.includes(query) ||
-        c.address.toLowerCase().includes(query)
-    );
-
-    if (filtered.length > 0) {
-        displayContacts(filtered);
+    const c = database.contact;
+    if (c.name.toLowerCase().includes(query) || c.number.includes(query)) {
+        renderContact([c]);
     } else {
-        document.getElementById('contact-details').innerHTML = "<p>No contact found!</p>";
+        document.getElementById('contact-details').innerHTML = "<p>Not Found</p>";
     }
 }
