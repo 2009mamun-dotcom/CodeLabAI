@@ -45,3 +45,51 @@ async function fetchData() {
         console.error("Error loading JSON:", error);
     }
 }
+// Agere motoi thakbe, sudhu search function-ti niche add hobe
+let allContacts = []; // Data store korar jonno
+
+async function fetchData() {
+    try {
+        const response = await fetch('data.json');
+        const data = await response.json();
+        allContacts = [data.contact]; // JSON theke contact nilam
+        
+        displayContacts(allContacts); // Initial display
+        loadGallery(data.gallery);
+    } catch (error) {
+        console.error("Error:", error);
+    }
+}
+
+// Contact dekhano function
+function displayContacts(contacts) {
+    const container = document.getElementById('contact-details');
+    container.innerHTML = ""; 
+
+    contacts.forEach(c => {
+        container.innerHTML += `
+            <div class="contact-card" style="padding:15px; background:rgba(255,255,255,0.05); border-radius:10px; margin-bottom:10px;">
+                <p><strong>Name:</strong> ${c.name}</p>
+                <p><strong>Address:</strong> ${c.address}</p>
+                <p><strong>Phone:</strong> ${c.number}</p>
+            </div>
+        `;
+    });
+}
+
+// Search Logic
+function searchContact() {
+    const query = document.getElementById('contactSearch').value.toLowerCase();
+    
+    const filtered = allContacts.filter(c => 
+        c.name.toLowerCase().includes(query) || 
+        c.number.includes(query) ||
+        c.address.toLowerCase().includes(query)
+    );
+
+    if (filtered.length > 0) {
+        displayContacts(filtered);
+    } else {
+        document.getElementById('contact-details').innerHTML = "<p>No contact found!</p>";
+    }
+}
