@@ -3,44 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Private Portal</title>
+    <title>Private Portal | Secure Access</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="bg-image" id="bg-image" style="background-image: url('001.jpg');"></div>
 
-    <div id="login-section" class="card-container">
-        <div class="glass-card">
-            <h2>Private Access</h2>
+    <div id="access-trigger-section" class="center-container">
+        <div class="neon-wrapper" onclick="showLogin()">
+            <div class="neon-card">
+                <h2>GET PRIVATE ACCESS</h2>
+                <div class="lighting"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="login-section" class="center-container" style="display: none;">
+        <div class="glass-login">
+            <h3>Identity Verification</h3>
             <div class="input-group">
-                <input type="text" id="username" placeholder="Username (Mobile)" required>
-                <input type="password" id="password" placeholder="Password" required>
+                <input type="text" id="username" placeholder="Username (01885412300)">
+                <input type="password" id="password" placeholder="Password (17648)">
             </div>
-            <button onclick="checkLogin()">Login</button>
+            <button onclick="checkLogin()">Enter Securely</button>
         </div>
     </div>
 
-    <div id="main-content" style="display: none;">
-        <nav>
+    <div id="dashboard" class="center-container" style="display: none;">
+        <div class="choice-container">
+            <div class="choice-card" onclick="showModule('gallery-view')">
+                <div class="icon">🖼️</div>
+                <h3>Photo Gallery</h3>
+                <p>View & Download JPG</p>
+            </div>
+            <div class="choice-card" onclick="showModule('contact-view')">
+                <div class="icon">📞</div>
+                <h3>Contact Info</h3>
+                <p>Find Information</p>
+            </div>
+        </div>
+        <button class="logout-btn" onclick="location.reload()">Exit Portal</button>
+    </div>
+
+    <div id="gallery-view" class="content-view" style="display: none;">
+        <div class="view-header">
+            <button class="back-btn" onclick="goBack()">← Back</button>
             <h1>Photo Gallery</h1>
-            <button class="logout-btn" onclick="location.reload()">Logout</button>
-        </nav>
-        
-        <div class="gallery-grid" id="photo-gallery">
-            </div>
-
-        <div class="info-section">
-    <h2>Contact Directory</h2>
-    
-    <div class="search-container" style="margin-bottom: 20px;">
-        <input type="text" id="contactSearch" placeholder="Search by name or number..." 
-               style="width: 70%; display: inline-block;">
-        <button onclick="searchContact()" style="padding: 10px 20px;">Search</button>
-    </div>
-
-    <div id="contact-details">
         </div>
-</div>
+        <div class="gallery-grid" id="photo-gallery"></div>
     </div>
+
+    <div id="contact-view" class="content-view" style="display: none;">
+        <div class="view-header">
+            <button class="back-btn" onclick="goBack()">← Back</button>
+            <h1>Contact Directory</h1>
+        </div>
+        <div class="search-box">
+            <input type="text" id="contactSearch" placeholder="Search name or number...">
+            <button onclick="searchContact()">Search</button>
+        </div>
+        <div id="contact-details"></div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
