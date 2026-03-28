@@ -1,30 +1,29 @@
 {
-    "gallery": [
-        { 
-            "url": "images/photo1.jpg", 
-            "caption": "My First Photo" 
-        },
-        { 
-            "url": "images/photo2.jpg", 
-            "caption": "Personal Moment" 
-        }
-    ],
-    
+  "gallery": [
+    {
+      "url": "images/photo1.jpg",
+      "caption": "My First Photo"
+    },
+    {
+      "url": "images/photo2.jpg",
+      "caption": "Personal Moment"
+    }
+  ],
   "contacts": [
     {
       "name": "Maruf",
       "address": "Not available",
-      "number": "015-221-22451"
+      "number": "01522122451"
     },
     {
       "name": "Rijon",
       "address": "Not available",
-      "number": "016-059-53235"
+      "number": "01605953235"
     },
     {
       "name": "Joy",
       "address": "Not available",
-      "number": "018-844-84750"
+      "number": "01884484750"
     },
     {
       "name": "Sajid",
@@ -109,14 +108,12 @@
     {
       "name": "Biplob vai",
       "address": "Not available",
-      "number": "013-069-44960"
+      "number": "01306944960"
     },
     {
       "name": "Alamin",
       "address": "Not available",
-      "number": "019-188-52654"
+      "number": "01918852654"
     }
   ]
 }
-
-
