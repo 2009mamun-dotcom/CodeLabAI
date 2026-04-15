@@ -10,36 +10,28 @@ async function checkLogin() {
     const user = document.getElementById('username').value;
     const pass = document.getElementById('password').value;
 
-    // লোডিং ইফেক্ট বাটন এ দিতে পারেন
     if (user === "01885412300" && pass === "17648") {
         try {
             const res = await fetch('data.json');
             database = await res.json();
             
-            // টোটাল সংখ্যা আপডেট করা
-            updateCounters();
+            // Update Counters
+            document.getElementById('gallery-count').innerText = database.gallery?.length || 0;
+            document.getElementById('contact-count').innerText = database.contacts?.length || 0;
             
             document.getElementById('login-section').style.display = 'none';
             document.getElementById('dashboard').style.display = 'flex';
-        } catch (error) {
-            alert("data.json ফাইলটি পাওয়া যায়নি!");
+        } catch (e) {
+            alert("Database Connection Failed!");
         }
     } else {
-        alert("ভুল পাসওয়ার্ড বা ইউজারনেম!");
-    }
-}
-
-function updateCounters() {
-    if(database) {
-        document.getElementById('gallery-count').innerText = database.gallery ? database.gallery.length : 0;
-        document.getElementById('contact-count').innerText = database.contacts ? database.contacts.length : 0;
+        alert("ACCESS DENIED: Credentials Invalid.");
     }
 }
 
 function showModule(id) {
     document.getElementById('dashboard').style.display = 'none';
     document.getElementById(id).style.display = 'block';
-    
     if(id === 'gallery-view') renderGallery();
     else if(id === 'contact-view') renderContact();
 }
@@ -51,37 +43,28 @@ function goBack() {
 
 function renderGallery() {
     const container = document.getElementById('photo-gallery');
-    if(!database || !database.gallery) return;
-    
     container.innerHTML = database.gallery.map(item => `
         <div class="photo-item">
-            <img src="${item.url}" alt="image">
-            <p style="margin: 15px 0; font-size: 0.9rem;">${item.caption}</p>
-            <a href="${item.url}" download style="color:var(--accent); text-decoration:none; font-weight:bold;">
-                <i class="fas fa-download"></i> Download JPG
-            </a>
+            <img src="${item.url}">
+            <p style="margin:10px 0; font-size:14px; opacity:0.8;">${item.caption}</p>
+            <a href="${item.url}" download style="color:var(--primary); text-decoration:none; font-weight:bold;">DOWNLOAD</a>
         </div>
     `).join('');
 }
 
 function renderContact(filteredData = null) {
     const container = document.getElementById('contact-details');
-    if(!database || !database.contacts) return;
-    
-    const dataToShow = filteredData || database.contacts;
-    container.innerHTML = dataToShow.map(c => `
-        <div class="photo-item" style="margin-bottom:15px; border-left: 4px solid var(--accent);">
-            <p><strong><i class="fas fa-user"></i> Name:</strong> ${c.name}</p>
-            <p><strong><i class="fas fa-map-marker-alt"></i> Address:</strong> ${c.address || 'N/A'}</p>
-            <p><strong><i class="fas fa-phone"></i> Phone:</strong> <a href="tel:${c.number}" style="color:var(--accent);">${c.number}</a></p>
+    const data = filteredData || database.contacts;
+    container.innerHTML = data.map(c => `
+        <div class="photo-item" style="border-left: 4px solid var(--primary); margin-bottom:15px;">
+            <p><strong>Name:</strong> ${c.name}</p>
+            <p><strong>Phone:</strong> <a href="tel:${c.number}" style="color:var(--primary);">${c.number}</a></p>
         </div>
     `).join('');
 }
 
 function searchContact() {
     const query = document.getElementById('contactSearch').value.toLowerCase();
-    const filtered = database.contacts.filter(c => 
-        c.name.toLowerCase().includes(query) || c.number.includes(query)
-    );
+    const filtered = database.contacts.filter(c => c.name.toLowerCase().includes(query) || c.number.includes(query));
     renderContact(filtered);
 }
