@@ -3,40 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Private Portal | Ultra Secure</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Cyber Portal | Next-Gen Security</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #00f2fe;
-            --secondary: #4facfe;
-            --glass: rgba(255, 255, 255, 0.1);
-            --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            --neon-blue: #00d2ff;
+            --neon-purple: #9d50bb;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --border-glow: 0 0 15px rgba(0, 210, 255, 0.5);
         }
 
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Rajdhani', sans-serif;
+            background: #050505;
+            color: #fff;
             overflow: hidden;
-            background: #0f0c29;
         }
 
-        /* Animated Background */
-        .bg-image {
+        /* Particles or Dynamic Background Effect */
+        .bg-overlay {
             position: fixed;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, #1b2735 0%, #090a0f 100%);
             z-index: -1;
-        }
-
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
         }
 
         .center-container {
@@ -44,205 +36,204 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            perspective: 1000px;
+            flex-direction: column;
+            transition: all 0.5s ease;
         }
 
-        /* 3D Neon Card Effect */
+        /* Advanced 3D Neon Card */
         .neon-wrapper {
+            position: relative;
+            padding: 4px;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+            border-radius: 15px;
             cursor: pointer;
-            transition: transform 0.5s;
+            box-shadow: var(--border-glow);
+            transition: 0.5s;
+            animation: floating 3s ease-in-out infinite;
         }
 
         .neon-wrapper:hover {
-            transform: rotateY(10deg) rotateX(10deg) scale(1.05);
+            transform: scale(1.1) rotateX(10deg);
+            box-shadow: 0 0 30px var(--neon-blue), 0 0 60px var(--neon-purple);
         }
 
         .neon-card {
-            padding: 40px 60px;
-            background: var(--glass);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            border-radius: 20px;
-            box-shadow: var(--shadow), 0 0 20px var(--primary);
+            background: #0a0a0a;
+            padding: 40px 80px;
+            border-radius: 12px;
             text-align: center;
-            animation: pulse 2s infinite;
         }
 
         .neon-card h2 {
-            color: #fff;
-            letter-spacing: 5px;
-            text-shadow: 0 0 10px var(--primary);
+            font-family: 'Orbitron', sans-serif;
             margin: 0;
+            letter-spacing: 4px;
+            background: linear-gradient(to right, #00d2ff, #9d50bb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        @keyframes pulse {
-            0% { box-shadow: 0 0 20px var(--primary); }
-            50% { box-shadow: 0 0 40px var(--secondary); }
-            100% { box-shadow: 0 0 20px var(--primary); }
-        }
-
-        /* Glassmorphism Login */
+        /* Glassmorphism Login Form */
         .glass-login {
-            background: var(--glass);
-            backdrop-filter: blur(15px);
-            padding: 40px;
-            border-radius: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: var(--shadow);
-            width: 320px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            padding: 50px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 45px rgba(0,0,0,0.5);
+            width: 350px;
             text-align: center;
-            transform: translateY(20px);
-            animation: fadeInUp 0.8s forwards;
+            animation: slideIn 0.6s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
         .input-group input {
-            width: 90%;
-            padding: 12px;
-            margin: 10px 0;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            color: white;
-            outline: none;
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(0, 210, 255, 0.3);
+            border-radius: 8px;
+            color: #00d2ff;
+            font-size: 16px;
             transition: 0.3s;
         }
 
         .input-group input:focus {
-            border-color: var(--primary);
-            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 10px var(--neon-blue);
+            outline: none;
         }
 
         button {
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
             border: none;
-            padding: 12px 25px;
+            border-radius: 8px;
             color: white;
-            border-radius: 10px;
-            cursor: pointer;
             font-weight: bold;
-            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.4);
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
             transition: 0.3s;
-            margin-top: 15px;
         }
 
         button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 242, 254, 0.6);
+            filter: brightness(1.2);
+            transform: translateY(-2px);
         }
 
-        /* Dashboard Choice Cards */
+        /* Choice Cards 3D Look */
         .choice-container {
             display: flex;
-            gap: 30px;
+            gap: 40px;
         }
 
         .choice-card {
-            background: var(--glass);
-            padding: 30px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 40px;
             border-radius: 20px;
             text-align: center;
-            color: white;
-            cursor: pointer;
+            width: 180px;
             transition: 0.4s;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            width: 150px;
+            cursor: pointer;
         }
 
         .choice-card:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-10px) rotateX(5deg);
+            background: rgba(0, 210, 255, 0.1);
+            border-color: var(--neon-blue);
+            transform: perspective(1000px) translateZ(50px);
         }
 
-        .choice-card .icon { font-size: 40px; margin-bottom: 10px; }
+        .counter-box {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--neon-blue);
+            margin-top: 10px;
+        }
 
         /* Animations */
-        @keyframes fadeInUp {
-            to { transform: translateY(0); opacity: 1; }
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
         }
 
-        .hidden { display: none !important; }
-
-        .logout-btn {
-            position: absolute;
-            bottom: 20px;
-            background: rgba(255, 0, 0, 0.2);
-            border: 1px solid red;
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Info Badge */
-        .info-badge {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: var(--glass);
-            padding: 5px 15px;
-            border-radius: 20px;
-            color: #fff;
-            font-size: 12px;
-            border: 1px solid var(--primary);
-        }
+        .hidden { display: none; }
     </style>
 </head>
 <body>
 
-    <div class="bg-image" id="bg-image"></div>
-    
-    <div class="info-badge" id="stat-badge">
-        Portal Status: Online | Files: 120+
-    </div>
+    <div class="bg-overlay"></div>
 
     <div id="access-trigger-section" class="center-container">
         <div class="neon-wrapper" onclick="showLogin()">
             <div class="neon-card">
-                <h2>PRIVATE ACCESS</h2>
-                <p style="color: #aaa; margin-top: 10px;">Click to Decrypt</p>
+                <h2>INITIALIZE SYSTEM</h2>
             </div>
         </div>
     </div>
 
     <div id="login-section" class="center-container" style="display: none;">
         <div class="glass-login">
-            <h3 style="color: white;">Identity Verification</h3>
+            <h2 style="margin-bottom: 30px; font-family: 'Orbitron';">AUTHENTICATE</h2>
             <div class="input-group">
-                <input type="text" id="username" placeholder="Username">
-                <input type="password" id="password" placeholder="Password">
+                <input type="text" id="username" placeholder="ACCESS_KEY">
+                <input type="password" id="password" placeholder="SECURE_PIN">
             </div>
-            <button onclick="checkLogin()">AUTHENTICATE</button>
+            <button onclick="checkLogin()">Login to Mainframe</button>
         </div>
     </div>
 
     <div id="dashboard" class="center-container" style="display: none;">
         <div class="choice-container">
-            <div class="choice-card" onclick="showModule('gallery-view')">
-                <div class="icon">📸</div>
+            <div class="choice-card">
+                <div style="font-size: 50px;">🖼️</div>
                 <h3>Gallery</h3>
-                <small>48 Items</small>
+                <div id="photo-count" class="counter-box">0</div>
             </div>
-            <div class="choice-card" onclick="showModule('contact-view')">
-                <div class="icon">👤</div>
+            <div class="choice-card">
+                <div style="font-size: 50px;">📞</div>
                 <h3>Contacts</h3>
-                <small>Total: 254</small>
+                <div id="contact-count" class="counter-box">0</div>
             </div>
         </div>
-        <button class="logout-btn" onclick="location.reload()">TERMINATE SESSION</button>
     </div>
 
     <script>
-        // Simple Navigation Logic
+        // Fetch JSON and Show Count
+        async function loadStatistics() {
+            try {
+                // Ekhane tomar json file er path dibe (e.g., 'data.json')
+                // Ammi mock data diye dekhacchi jate result bujha jay
+                const response = await fetch('data.json'); 
+                const data = await response.json();
+
+                // Dhore nichhi JSON structure erom: { "photos": [...], "contacts": [...] }
+                document.getElementById('photo-count').innerText = data.photos.length;
+                document.getElementById('contact-count').innerText = data.contacts.length;
+            } catch (error) {
+                console.error("JSON load hoyni, manual count deya holo:", error);
+                // JSON na thakle eita dummy data dekhabe
+                document.getElementById('photo-count').innerText = "42"; 
+                document.getElementById('contact-count').innerText = "128";
+            }
+        }
+
         function showLogin() {
             document.getElementById('access-trigger-section').style.display = 'none';
             document.getElementById('login-section').style.display = 'flex';
         }
 
         function checkLogin() {
-            // Static login for demo
             document.getElementById('login-section').style.display = 'none';
             document.getElementById('dashboard').style.display = 'flex';
-        }
-
-        function showModule(id) {
-            alert('Loading ' + id + ' with 3D effects...');
-            // Extend your script.js here
+            loadStatistics(); // Dashboard login korle data load hobe
         }
     </script>
 </body>
