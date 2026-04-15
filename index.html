@@ -3,68 +3,247 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Private Portal | Secure Access</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Private Portal | Ultra Secure</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00f2fe;
+            --secondary: #4facfe;
+            --glass: rgba(255, 255, 255, 0.1);
+            --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            background: #0f0c29;
+        }
+
+        /* Animated Background */
+        .bg-image {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            z-index: -1;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .center-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            perspective: 1000px;
+        }
+
+        /* 3D Neon Card Effect */
+        .neon-wrapper {
+            cursor: pointer;
+            transition: transform 0.5s;
+        }
+
+        .neon-wrapper:hover {
+            transform: rotateY(10deg) rotateX(10deg) scale(1.05);
+        }
+
+        .neon-card {
+            padding: 40px 60px;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 20px;
+            box-shadow: var(--shadow), 0 0 20px var(--primary);
+            text-align: center;
+            animation: pulse 2s infinite;
+        }
+
+        .neon-card h2 {
+            color: #fff;
+            letter-spacing: 5px;
+            text-shadow: 0 0 10px var(--primary);
+            margin: 0;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 20px var(--primary); }
+            50% { box-shadow: 0 0 40px var(--secondary); }
+            100% { box-shadow: 0 0 20px var(--primary); }
+        }
+
+        /* Glassmorphism Login */
+        .glass-login {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            padding: 40px;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: var(--shadow);
+            width: 320px;
+            text-align: center;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s forwards;
+        }
+
+        .input-group input {
+            width: 90%;
+            padding: 12px;
+            margin: 10px 0;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: white;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .input-group input:focus {
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        button {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border: none;
+            padding: 12px 25px;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.4);
+            transition: 0.3s;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 242, 254, 0.6);
+        }
+
+        /* Dashboard Choice Cards */
+        .choice-container {
+            display: flex;
+            gap: 30px;
+        }
+
+        .choice-card {
+            background: var(--glass);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            color: white;
+            cursor: pointer;
+            transition: 0.4s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 150px;
+        }
+
+        .choice-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-10px) rotateX(5deg);
+        }
+
+        .choice-card .icon { font-size: 40px; margin-bottom: 10px; }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .hidden { display: none !important; }
+
+        .logout-btn {
+            position: absolute;
+            bottom: 20px;
+            background: rgba(255, 0, 0, 0.2);
+            border: 1px solid red;
+        }
+
+        /* Info Badge */
+        .info-badge {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--glass);
+            padding: 5px 15px;
+            border-radius: 20px;
+            color: #fff;
+            font-size: 12px;
+            border: 1px solid var(--primary);
+        }
+    </style>
 </head>
 <body>
-    <div class="bg-image" id="bg-image" style="background-image: url('001.jpg');"></div>
+
+    <div class="bg-image" id="bg-image"></div>
+    
+    <div class="info-badge" id="stat-badge">
+        Portal Status: Online | Files: 120+
+    </div>
 
     <div id="access-trigger-section" class="center-container">
         <div class="neon-wrapper" onclick="showLogin()">
             <div class="neon-card">
-                <h2>GET PRIVATE ACCESS</h2>
-                <div class="lighting"></div>
+                <h2>PRIVATE ACCESS</h2>
+                <p style="color: #aaa; margin-top: 10px;">Click to Decrypt</p>
             </div>
         </div>
     </div>
 
     <div id="login-section" class="center-container" style="display: none;">
         <div class="glass-login">
-            <h3>Identity Verification</h3>
+            <h3 style="color: white;">Identity Verification</h3>
             <div class="input-group">
-                <input type="text" id="username" placeholder="Username (01885412300)">
-                <input type="password" id="password" placeholder="Password (17648)">
+                <input type="text" id="username" placeholder="Username">
+                <input type="password" id="password" placeholder="Password">
             </div>
-            <button onclick="checkLogin()">Enter Securely</button>
+            <button onclick="checkLogin()">AUTHENTICATE</button>
         </div>
     </div>
 
     <div id="dashboard" class="center-container" style="display: none;">
         <div class="choice-container">
             <div class="choice-card" onclick="showModule('gallery-view')">
-                <div class="icon">🖼️</div>
-                <h3>Photo Gallery</h3>
-                <p>View & Download JPG</p>
+                <div class="icon">📸</div>
+                <h3>Gallery</h3>
+                <small>48 Items</small>
             </div>
             <div class="choice-card" onclick="showModule('contact-view')">
-                <div class="icon">📞</div>
-                <h3>Contact Info</h3>
-                <p>Find Information</p>
+                <div class="icon">👤</div>
+                <h3>Contacts</h3>
+                <small>Total: 254</small>
             </div>
         </div>
-        <button class="logout-btn" onclick="location.reload()">Exit Portal</button>
+        <button class="logout-btn" onclick="location.reload()">TERMINATE SESSION</button>
     </div>
 
-    <div id="gallery-view" class="content-view" style="display: none;">
-        <div class="view-header">
-            <button class="back-btn" onclick="goBack()">← Back</button>
-            <h1>Photo Gallery</h1>
-        </div>
-        <div class="gallery-grid" id="photo-gallery"></div>
-    </div>
+    <script>
+        // Simple Navigation Logic
+        function showLogin() {
+            document.getElementById('access-trigger-section').style.display = 'none';
+            document.getElementById('login-section').style.display = 'flex';
+        }
 
-    <div id="contact-view" class="content-view" style="display: none;">
-        <div class="view-header">
-            <button class="back-btn" onclick="goBack()">← Back</button>
-            <h1>Contact Directory</h1>
-        </div>
-        <div class="search-box">
-            <input type="text" id="contactSearch" placeholder="Search name or number...">
-            <button onclick="searchContact()">Search</button>
-        </div>
-        <div id="contact-details"></div>
-    </div>
+        function checkLogin() {
+            // Static login for demo
+            document.getElementById('login-section').style.display = 'none';
+            document.getElementById('dashboard').style.display = 'flex';
+        }
 
-    <script src="script.js"></script>
+        function showModule(id) {
+            alert('Loading ' + id + ' with 3D effects...');
+            // Extend your script.js here
+        }
+    </script>
 </body>
 </html>
