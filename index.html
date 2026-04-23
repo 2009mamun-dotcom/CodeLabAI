@@ -6,7 +6,190 @@
     <title>Aura Nexus | The Quantum Vault</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Background logic consistent with your image */
+        .bg-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: url('https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+            z-index: -1;
+            filter: brightness(0.7);
+            transition: 0.5s;
+        }
+
+        .center-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+        }
+
+        /* Welcome Section */
+        .welcome-text h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.5rem, 5vw, 3rem);
+            letter-spacing: 5px;
+            text-shadow: 0 0 20px rgba(0, 210, 255, 0.5);
+        }
+        .highlight { color: #00d2ff; }
+        
+        .portal-trigger {
+            margin-top: 30px;
+            cursor: pointer;
+            text-align: center;
+        }
+        .orb {
+            width: 70px; height: 70px;
+            background: radial-gradient(circle, #00d2ff, #3a7bd5);
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            box-shadow: 0 0 30px #00d2ff;
+            animation: pulse 2s infinite;
+        }
+
+        /* GLASS LOGIN CARD - Exact match to your provided image style */
+        .vault-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 50px 40px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            text-align: center;
+        }
+
+        .vault-header h3 {
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 30px;
+            font-size: 22px;
+            letter-spacing: 2px;
+        }
+
+        /* 3D Inputs */
+        .input-box {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .input-box input {
+            width: 100%;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 30px;
+            color: white;
+            outline: none;
+            font-size: 14px;
+            box-shadow: inset 4px 4px 8px rgba(0,0,0,0.2), 
+                        inset -4px -4px 8px rgba(255,255,255,0.05);
+        }
+
+        .input-box label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.8);
+            text-align: left;
+            padding-left: 15px;
+        }
+
+        /* Neon Authenticate Button */
+        .neon-btn {
+            width: 100%;
+            padding: 14px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 30px;
+            background: white;
+            color: #222;
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .neon-btn:hover {
+            transform: translateY(-3px);
+            background: #00d2ff;
+            color: white;
+            box-shadow: 0 8px 25px rgba(0, 210, 255, 0.5);
+        }
+
+        /* 3D Dashboard Choices */
+        .dashboard-grid {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .choice-card-3d {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            width: 180px;
+            cursor: pointer;
+            transition: 0.4s;
+            border: 1px solid rgba(255,255,255,0.1);
+            /* 3D depth effect */
+            box-shadow: 10px 10px 20px rgba(0,0,0,0.3), 
+                        -5px -5px 15px rgba(255,255,255,0.05);
+        }
+
+        .choice-card-3d:hover {
+            transform: perspective(1000px) rotateX(10deg) translateY(-10px);
+            border-color: #00d2ff;
+            background: rgba(255,255,255,0.2);
+        }
+
+        .badge {
+            background: #00d2ff;
+            color: black;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 2px 8px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .exit-link {
+            margin-top: 40px;
+            background: none;
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.15); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+    </style>
 </head>
 <body>
     <div class="bg-overlay" id="bg-image"></div>
@@ -19,7 +202,7 @@
         <div class="portal-trigger" onclick="showLogin()">
             <div class="orb"></div>
             <div class="trigger-btn">
-                <i class="fas fa-microchip"></i>
+                <i class="fas fa-microchip"></i><br>
                 <span>INITIALIZE ACCESS</span>
             </div>
         </div>
@@ -28,69 +211,67 @@
     <div id="login-section" class="center-container" style="display: none;">
         <div class="vault-card">
             <div class="vault-header">
-                <i class="fas fa-user-shield"></i>
-                <h3>Identity Verification</h3>
+                <i class="fas fa-user-shield" style="font-size: 40px; margin-bottom: 10px; color: #00d2ff;"></i>
+                <h3>LOGIN</h3>
             </div>
             <div class="input-container">
                 <div class="input-box">
-                    <input type="text" id="username" required>
-                    <label>Username (01885412300)</label>
+                    <label>Username</label>
+                    <input type="text" id="username" placeholder="01885412300">
                 </div>
                 <div class="input-box">
-                    <input type="password" id="password" required>
-                    <label>Access Key (17648)</label>
+                    <label>Access Key</label>
+                    <input type="password" id="password" placeholder="•••••">
                 </div>
             </div>
-            <button class="neon-btn" onclick="checkLogin()">
-                <span></span><span></span><span></span><span></span>
-                AUTHENTICATE
-            </button>
+            <button class="neon-btn" onclick="checkLogin()">AUTHENTICATE</button>
+            <p style="margin-top: 20px; font-size: 12px; opacity: 0.6;">Don't have an account? <span style="text-decoration: underline; cursor: pointer;">Register</span></p>
         </div>
     </div>
 
     <div id="dashboard" class="center-container" style="display: none;">
-        <h2 class="dash-title">Vault Command Center</h2>
+        <h2 style="margin-bottom: 30px; font-family: 'Orbitron';">Vault Command Center</h2>
         <div class="dashboard-grid">
-            <div class="choice-card-3d" onclick="showModule('gallery-view')">
+            <div class="choice-card-3d" onclick="alert('Opening Media Core...')">
                 <div class="card-inner">
-                    <div class="badge" id="gallery-count">0</div>
-                    <i class="fas fa-images"></i>
+                    <div class="badge" id="gallery-count">12</div><br>
+                    <i class="fas fa-images" style="font-size: 30px; margin-bottom: 10px;"></i>
                     <h3>Media Core</h3>
-                    <p>Encrypted JPG Assets</p>
+                    <p style="font-size: 11px; opacity: 0.7;">Encrypted Assets</p>
                 </div>
             </div>
 
-            <div class="choice-card-3d" onclick="showModule('contact-view')">
+            <div class="choice-card-3d" onclick="alert('Opening Neural Links...')">
                 <div class="card-inner">
-                    <div class="badge" id="contact-count">0</div>
-                    <i class="fas fa-address-card"></i>
+                    <div class="badge" id="contact-count">45</div><br>
+                    <i class="fas fa-address-card" style="font-size: 30px; margin-bottom: 10px;"></i>
                     <h3>Neural Links</h3>
-                    <p>Secure Contact Directory</p>
+                    <p style="font-size: 11px; opacity: 0.7;">Secure Directory</p>
                 </div>
             </div>
         </div>
         <button class="exit-link" onclick="location.reload()">Terminate Session</button>
     </div>
 
-    <div id="gallery-view" class="content-view" style="display: none;">
-        <div class="view-header">
-            <button class="back-link" onclick="goBack()"><i class="fas fa-arrow-left"></i> RETURN</button>
-            <h1>Media Core</h1>
-        </div>
-        <div class="gallery-grid" id="photo-gallery"></div>
-    </div>
+    <script>
+        function showLogin() {
+            document.getElementById('access-trigger-section').style.display = 'none';
+            document.getElementById('login-section').style.display = 'flex';
+        }
 
-    <div id="contact-view" class="content-view" style="display: none;">
-        <div class="view-header">
-            <button class="back-link" onclick="goBack()"><i class="fas fa-arrow-left"></i> RETURN</button>
-            <h1>Neural Links</h1>
-        </div>
-        <div class="search-bar">
-            <input type="text" id="contactSearch" placeholder="Filter identities..." onkeyup="searchContact()">
-        </div>
-        <div id="contact-details" class="list-container"></div>
-    </div>
+        function checkLogin() {
+            const user = document.getElementById('username').value;
+            const pass = document.getElementById('password').value;
 
-    <script src="script.js"></script>
+            // Pre-defined credentials from your code
+            if (user === "01885412300" && pass === "17648") {
+                document.getElementById('login-section').style.display = 'none';
+                document.getElementById('dashboard').style.display = 'flex';
+                document.getElementById('bg-image').style.filter = "brightness(0.4) blur(5px)";
+            } else {
+                alert("Incorrect Credentials! Verification Failed.");
+            }
+        }
+    </script>
 </body>
 </html>
