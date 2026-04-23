@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aura Nexus | The Quantum Vault</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>My Server | Quantum Vault</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -18,17 +18,33 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            background: #000;
         }
 
-        /* Background logic consistent with your image */
-        .bg-overlay {
+        /* Background with 'Mamun' Shadow Text */
+        .bg-container {
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: url('https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
             z-index: -1;
-            filter: brightness(0.7);
-            transition: 0.5s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* "Mamun" watermark shadow in background */
+        .bg-container::after {
+            content: "Mamun";
+            position: absolute;
+            font-family: 'Orbitron';
+            font-size: 15vw;
+            color: rgba(255, 255, 255, 0.05);
+            text-transform: uppercase;
+            letter-spacing: 20px;
+            z-index: -1;
+            pointer-events: none;
         }
 
         .center-container {
@@ -40,237 +56,201 @@
             z-index: 1;
         }
 
-        /* Welcome Section */
+        /* 3D Title with Deep Shadow */
         .welcome-text h1 {
             font-family: 'Orbitron', sans-serif;
-            font-size: clamp(1.5rem, 5vw, 3rem);
-            letter-spacing: 5px;
-            text-shadow: 0 0 20px rgba(0, 210, 255, 0.5);
-        }
-        .highlight { color: #00d2ff; }
-        
-        .portal-trigger {
-            margin-top: 30px;
-            cursor: pointer;
-            text-align: center;
-        }
-        .orb {
-            width: 70px; height: 70px;
-            background: radial-gradient(circle, #00d2ff, #3a7bd5);
-            border-radius: 50%;
-            margin: 0 auto 15px;
-            box-shadow: 0 0 30px #00d2ff;
-            animation: pulse 2s infinite;
+            font-size: clamp(1.8rem, 6vw, 3.5rem);
+            letter-spacing: 3px;
+            color: #ffffff;
+            text-transform: uppercase;
+            /* 3D Layered Shadow Effect */
+            text-shadow: 
+                0 1px 0 #ccc,
+                0 2px 0 #c5c5c5,
+                0 3px 0 #bbb,
+                0 4px 0 #b0b0b0,
+                0 5px 0 #aaa,
+                0 6px 1px rgba(0,0,0,.1),
+                0 0 5px rgba(0,0,0,.1),
+                0 1px 3px rgba(0,0,0,.3),
+                0 3px 5px rgba(0,0,0,.2),
+                0 5px 10px rgba(0,0,0,.25),
+                0 10px 10px rgba(0,0,0,.2),
+                0 20px 20px rgba(0,0,0,.15),
+                0 0 20px rgba(0, 210, 255, 0.5);
         }
 
-        /* GLASS LOGIN CARD - Exact match to your provided image style */
+        /* Glass Login Card */
         .vault-card {
             background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 50px 40px;
-            border-radius: 20px;
+            padding: 40px;
+            border-radius: 25px;
             width: 90%;
             max-width: 400px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
             text-align: center;
+            margin-top: 20px;
         }
 
-        .vault-header h3 {
-            font-family: 'Orbitron', sans-serif;
-            margin-bottom: 30px;
-            font-size: 22px;
-            letter-spacing: 2px;
-        }
-
-        /* 3D Inputs */
-        .input-box {
-            position: relative;
-            margin-bottom: 25px;
-        }
-
+        /* 3D Effect for Inputs */
         .input-box input {
             width: 100%;
-            padding: 12px 20px;
-            background: rgba(255, 255, 255, 0.1);
+            padding: 14px 20px;
+            margin: 15px 0;
+            background: rgba(0, 0, 0, 0.3);
             border: none;
             border-radius: 30px;
             color: white;
             outline: none;
-            font-size: 14px;
-            box-shadow: inset 4px 4px 8px rgba(0,0,0,0.2), 
-                        inset -4px -4px 8px rgba(255,255,255,0.05);
+            box-shadow: inset 5px 5px 10px rgba(0,0,0,0.5), 
+                        inset -2px -2px 5px rgba(255,255,255,0.1);
         }
 
-        .input-box label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.8);
-            text-align: left;
-            padding-left: 15px;
-        }
-
-        /* Neon Authenticate Button */
         .neon-btn {
             width: 100%;
-            padding: 14px;
-            margin-top: 10px;
-            border: none;
-            border-radius: 30px;
-            background: white;
-            color: #222;
+            padding: 15px;
+            background: #fff;
+            color: #000;
             font-weight: 700;
-            font-family: 'Orbitron', sans-serif;
+            border-radius: 30px;
+            border: none;
             cursor: pointer;
+            font-family: 'Orbitron';
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
             transition: 0.3s;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
         .neon-btn:hover {
-            transform: translateY(-3px);
             background: #00d2ff;
             color: white;
-            box-shadow: 0 8px 25px rgba(0, 210, 255, 0.5);
+            box-shadow: 0 0 20px #00d2ff;
+            transform: translateY(-3px);
         }
 
-        /* 3D Dashboard Choices */
-        .dashboard-grid {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
+        /* 3D Card Dashboard */
         .choice-card-3d {
             background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            padding: 30px;
+            padding: 25px;
             border-radius: 20px;
             width: 180px;
             cursor: pointer;
             transition: 0.4s;
+            margin: 15px;
             border: 1px solid rgba(255,255,255,0.1);
-            /* 3D depth effect */
-            box-shadow: 10px 10px 20px rgba(0,0,0,0.3), 
-                        -5px -5px 15px rgba(255,255,255,0.05);
+            box-shadow: 10px 10px 25px rgba(0,0,0,0.4);
         }
 
         .choice-card-3d:hover {
-            transform: perspective(1000px) rotateX(10deg) translateY(-10px);
-            border-color: #00d2ff;
+            transform: perspective(800px) rotateY(15deg) translateY(-10px);
             background: rgba(255,255,255,0.2);
+            border-color: #00d2ff;
         }
 
-        .badge {
-            background: #00d2ff;
-            color: black;
-            font-size: 12px;
-            font-weight: bold;
-            padding: 2px 8px;
+        .contact-item {
+            background: rgba(255,255,255,0.05);
+            margin: 10px 0;
+            padding: 12px;
             border-radius: 10px;
-            display: inline-block;
-            margin-bottom: 10px;
-        }
-
-        .exit-link {
-            margin-top: 40px;
-            background: none;
-            border: 1px solid rgba(255,255,255,0.3);
-            color: white;
-            padding: 8px 20px;
-            border-radius: 20px;
-            cursor: pointer;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.15); opacity: 1; }
-            100% { transform: scale(1); opacity: 0.8; }
+            display: flex;
+            justify-content: space-between;
+            border-left: 4px solid #00d2ff;
         }
     </style>
 </head>
 <body>
-    <div class="bg-overlay" id="bg-image"></div>
+    <div class="bg-container"></div>
     
-    <div id="access-trigger-section" class="center-container">
+    <div id="start-screen" class="center-container">
         <div class="welcome-text">
-            <h1>WELCOME TO <span class="highlight">AURA NEXUS</span></h1>
-            <p>Your Secure Quantum Gateway to Private Data</p>
+            <h1>WELCOME TO <br> <span style="color: #00d2ff;">MY SERVER</span></h1>
         </div>
-        <div class="portal-trigger" onclick="showLogin()">
-            <div class="orb"></div>
-            <div class="trigger-btn">
-                <i class="fas fa-microchip"></i><br>
-                <span>INITIALIZE ACCESS</span>
+        <div onclick="showLogin()" style="cursor:pointer; margin-top:40px;">
+            <div style="width:70px; height:70px; background:white; border-radius:50%; margin:auto; box-shadow:0 0 30px white; display:flex; justify-content:center; align-items:center; color:#000;">
+                <i class="fas fa-power-off fa-2x"></i>
             </div>
+            <p style="margin-top:15px; font-family:'Orbitron'; letter-spacing:2px;">INITIALIZE VAULT</p>
         </div>
     </div>
 
-    <div id="login-section" class="center-container" style="display: none;">
+    <div id="login-section" class="center-container" style="display:none;">
         <div class="vault-card">
-            <div class="vault-header">
-                <i class="fas fa-user-shield" style="font-size: 40px; margin-bottom: 10px; color: #00d2ff;"></i>
-                <h3>LOGIN</h3>
-            </div>
-            <div class="input-container">
-                <div class="input-box">
-                    <label>Username</label>
-                    <input type="text" id="username" placeholder="01885412300">
-                </div>
-                <div class="input-box">
-                    <label>Access Key</label>
-                    <input type="password" id="password" placeholder="•••••">
-                </div>
+            <h2 style="font-family:'Orbitron'; margin-bottom:20px;">Identity Verification</h2>
+            <div class="input-box">
+                <input type="text" id="username" placeholder="Phone Number (01885412300)">
+                <input type="password" id="password" placeholder="Access Key (17648)">
             </div>
             <button class="neon-btn" onclick="checkLogin()">AUTHENTICATE</button>
-            <p style="margin-top: 20px; font-size: 12px; opacity: 0.6;">Don't have an account? <span style="text-decoration: underline; cursor: pointer;">Register</span></p>
         </div>
     </div>
 
-    <div id="dashboard" class="center-container" style="display: none;">
-        <h2 style="margin-bottom: 30px; font-family: 'Orbitron';">Vault Command Center</h2>
-        <div class="dashboard-grid">
-            <div class="choice-card-3d" onclick="alert('Opening Media Core...')">
-                <div class="card-inner">
-                    <div class="badge" id="gallery-count">12</div><br>
-                    <i class="fas fa-images" style="font-size: 30px; margin-bottom: 10px;"></i>
-                    <h3>Media Core</h3>
-                    <p style="font-size: 11px; opacity: 0.7;">Encrypted Assets</p>
-                </div>
+    <div id="dashboard" class="center-container" style="display:none;">
+        <h2 style="font-family:'Orbitron'; margin-bottom:30px;">Server Command Center</h2>
+        <div style="display:flex; flex-wrap:wrap; justify-content:center;">
+            <div class="choice-card-3d" onclick="showContacts()">
+                <i class="fas fa-id-badge fa-3x" style="color:#00d2ff; margin-bottom:15px;"></i>
+                <h4>Neural Links</h4>
+                <p id="count" style="font-size:12px; margin-top:5px; opacity:0.7;">0 Active Links</p>
             </div>
-
-            <div class="choice-card-3d" onclick="alert('Opening Neural Links...')">
-                <div class="card-inner">
-                    <div class="badge" id="contact-count">45</div><br>
-                    <i class="fas fa-address-card" style="font-size: 30px; margin-bottom: 10px;"></i>
-                    <h3>Neural Links</h3>
-                    <p style="font-size: 11px; opacity: 0.7;">Secure Directory</p>
-                </div>
+            <div class="choice-card-3d" onclick="alert('Media Locked')">
+                <i class="fas fa-database fa-3x" style="color:#00d2ff; margin-bottom:15px;"></i>
+                <h4>Data Core</h4>
             </div>
         </div>
-        <button class="exit-link" onclick="location.reload()">Terminate Session</button>
+        <button onclick="location.reload()" style="margin-top:40px; background:transparent; color:white; border:1px solid white; padding:8px 20px; border-radius:20px; cursor:pointer;">Terminate Session</button>
+    </div>
+
+    <div id="contact-view" class="center-container" style="display:none;">
+        <div class="vault-card" style="max-width:500px; width:95%;">
+            <h3 style="font-family:'Orbitron'; margin-bottom:20px;">Secure Records</h3>
+            <div id="contact-list" style="max-height:300px; overflow-y:auto; text-align:left;">
+                </div>
+            <button onclick="goBack()" style="margin-top:20px; background:#444; border:none; color:white; padding:10px 20px; border-radius:20px; cursor:pointer;">Back to Command</button>
+        </div>
     </div>
 
     <script>
+        const contactData = [
+            { name: "Mamun (Admin)", phone: "01885412300" },
+            { name: "Personal Contact 1", phone: "017XXXXXXXX" },
+            { name: "Secret Node 02", phone: "013XXXXXXXX" }
+        ];
+
         function showLogin() {
-            document.getElementById('access-trigger-section').style.display = 'none';
+            document.getElementById('start-screen').style.display = 'none';
             document.getElementById('login-section').style.display = 'flex';
         }
 
         function checkLogin() {
-            const user = document.getElementById('username').value;
-            const pass = document.getElementById('password').value;
-
-            // Pre-defined credentials from your code
-            if (user === "01885412300" && pass === "17648") {
+            const u = document.getElementById('username').value;
+            const p = document.getElementById('password').value;
+            if(u === "01885412300" && p === "17648") {
                 document.getElementById('login-section').style.display = 'none';
                 document.getElementById('dashboard').style.display = 'flex';
-                document.getElementById('bg-image').style.filter = "brightness(0.4) blur(5px)";
+                document.getElementById('count').innerText = contactData.length + " Active Links";
             } else {
-                alert("Incorrect Credentials! Verification Failed.");
+                alert("ACCESS DENIED: Quantum Key Mismatch");
             }
+        }
+
+        function showContacts() {
+            document.getElementById('dashboard').style.display = 'none';
+            document.getElementById('contact-view').style.display = 'flex';
+            const listDiv = document.getElementById('contact-list');
+            listDiv.innerHTML = "";
+            contactData.forEach(item => {
+                listDiv.innerHTML += `
+                    <div class="contact-item">
+                        <span><strong>${item.name}</strong></span>
+                        <span style="color:#00d2ff">${item.phone}</span>
+                    </div>`;
+            });
+        }
+
+        function goBack() {
+            document.getElementById('contact-view').style.display = 'none';
+            document.getElementById('dashboard').style.display = 'flex';
         }
     </script>
 </body>
