@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quantum Vault | Data Sync</title>
+    <title>Quantum Vault | Fixed View</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -27,22 +27,15 @@
         .bg-container {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), 
-                        url('https://images.unsplash.com/photo-1510511459019-5dee997dd1db?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
-            z-index: -1; transition: 1.2s filter;
+                        url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop') no-repeat center center/cover;
+            z-index: -1;
         }
-        .blur-bg { filter: blur(20px) brightness(0.4); }
 
         .center-container {
             width: 100%; height: 100%;
             display: flex; flex-direction: column;
             justify-content: center; align-items: center;
             z-index: 1; padding: 20px;
-        }
-
-        /* Title & Cards */
-        .main-title {
-            font-family: 'Orbitron'; font-size: 2.2rem; letter-spacing: 5px;
-            margin-bottom: 40px; text-shadow: 0 0 20px var(--primary);
         }
 
         .vault-card {
@@ -55,7 +48,7 @@
         .input-box input {
             width: 100%; padding: 15px 25px; margin: 12px 0;
             background: rgba(0, 0, 0, 0.5); border: 1px solid var(--border);
-            border-radius: 50px; color: white; outline: none; transition: 0.3s;
+            border-radius: 50px; color: white; outline: none;
         }
 
         .neon-btn {
@@ -65,44 +58,28 @@
         }
         .neon-btn:hover { background: var(--primary); color: white; box-shadow: 0 0 25px var(--primary); }
 
-        /* Dashboard */
-        .choice-card-3d {
-            background: var(--glass); padding: 30px; border-radius: 25px;
-            border: 1px solid var(--border); cursor: pointer; transition: 0.3s; text-align: center;
-            width: 200px;
-        }
-        .choice-card-3d:hover { border-color: var(--primary); transform: translateY(-10px); }
-
-        /* Results List */
         .contact-view-container {
             display: none; width: 100%; max-width: 600px; height: 85vh;
             background: rgba(0, 0, 0, 0.95); border-radius: 30px;
             padding: 25px; border: 1px solid var(--primary); flex-direction: column;
         }
 
-        .contact-list { overflow-y: auto; flex-grow: 1; margin-top: 10px; }
+        .contact-list { overflow-y: auto; flex-grow: 1; margin-top: 10px; padding-right: 5px; }
         .contact-list::-webkit-scrollbar { width: 4px; }
         .contact-list::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
 
         .contact-card {
             background: rgba(255,255,255,0.03);
-            margin-bottom: 12px; padding: 18px; border-radius: 18px;
+            margin-bottom: 12px; padding: 15px; border-radius: 15px;
             border: 1px solid var(--border); display: flex; align-items: center;
-            animation: slideUp 0.3s ease forwards;
+            animation: slideUp 0.3s ease;
         }
-        .contact-icon {
-            width: 45px; height: 45px; background: rgba(0, 210, 255, 0.1);
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            margin-right: 15px; color: var(--primary);
-        }
-        .contact-info h4 { font-size: 14px; color: #fff; margin-bottom: 3px; }
+        .contact-info h4 { font-size: 14px; color: #fff; margin-bottom: 2px; }
         .contact-info p { font-size: 12px; color: var(--primary); font-family: 'Orbitron'; }
-        .contact-address { margin-left: auto; font-size: 10px; color: var(--accent); opacity: 0.7; }
+        .contact-address { margin-left: auto; font-size: 10px; color: var(--accent); background: rgba(0,255,136,0.1); padding: 3px 8px; border-radius: 5px; }
 
-        /* Empty State Design */
-        .not-found { text-align: center; padding: 60px 0; animation: fadeIn 0.5s; }
-        .not-found i { font-size: 4rem; color: var(--error); margin-bottom: 20px; filter: drop-shadow(0 0 10px var(--error)); }
-        .not-found h3 { font-family: 'Orbitron'; color: #fff; letter-spacing: 2px; }
+        .not-found { text-align: center; padding: 60px 0; }
+        .not-found i { font-size: 3.5rem; color: var(--error); margin-bottom: 15px; }
 
         @keyframes slideUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
     </style>
@@ -111,78 +88,78 @@
 
     <div class="bg-container" id="bg-layer"></div>
 
-    <div id="start-screen" class="center-container">
-        <h1 class="main-title">VAULT<span style="color: var(--primary);">01</span></h1>
-        <div onclick="showLogin()" style="cursor:pointer; text-align: center;">
-            <div style="width:90px; height:90px; background:white; border-radius:50%; margin:auto; box-shadow:0 0 30px white; display:flex; justify-content:center; align-items:center; color:#000;">
-                <i class="fas fa-lock fa-2x"></i>
-            </div>
-            <p style="margin-top:20px; font-family:'Orbitron'; font-size: 12px; letter-spacing: 3px;">INITIALIZE LOGIN</p>
-        </div>
-    </div>
-
-    <div id="login-section" class="center-container" style="display:none;">
+    <div id="login-section" class="center-container">
         <div class="vault-card">
-            <h2 style="font-family:'Orbitron'; margin-bottom:25px; font-size: 1.1rem;">Encryption Key</h2>
+            <h2 style="font-family:'Orbitron'; margin-bottom:25px;">Vault Access</h2>
             <div class="input-box">
                 <input type="text" id="username" placeholder="Phone ID">
                 <input type="password" id="password" placeholder="Passkey">
             </div>
-            <button class="neon-btn" onclick="handleLogin()">ACCESS</button>
+            <button class="neon-btn" onclick="handleLogin()">DECRYPT</button>
         </div>
     </div>
 
     <div id="dashboard" class="center-container" style="display:none;">
-        <div class="choice-card-3d" onclick="showModule('contact-view')">
+        <div class="vault-card" onclick="showModule('contact-view')" style="cursor:pointer;">
             <i class="fas fa-database fa-3x" style="color:var(--primary); margin-bottom:15px;"></i>
-            <h4 style="font-family: 'Orbitron'; font-size: 14px;">Records</h4>
-            <p id="contact-count" style="font-size:10px; opacity:0.6; margin-top:5px;">Syncing...</p>
+            <h4 style="font-family: 'Orbitron';">VIEW RECORDS</h4>
+            <p id="count-text" style="font-size:12px; opacity:0.7; margin-top:10px;"></p>
         </div>
-        <button onclick="location.reload()" style="margin-top:40px; background:none; border:1px solid #ff3e3e; color:#ff3e3e; padding:10px 30px; border-radius:50px; cursor:pointer; font-family: 'Orbitron';">TERMINATE</button>
     </div>
 
     <div id="contact-view" class="center-container" style="display:none;">
         <div class="contact-view-container">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
-                <h3 style="font-family:'Orbitron'; color:var(--primary);">Secure Nodes</h3>
-                <i class="fas fa-arrow-left" onclick="goBack()" style="cursor:pointer; font-size: 1.2rem;"></i>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+                <h3 style="font-family:'Orbitron'; color:var(--primary);">Secure Database</h3>
+                <i class="fas fa-times" onclick="location.reload()" style="cursor:pointer;"></i>
             </div>
-            <input type="text" id="contactSearch" class="input-box" placeholder="Search name or number..." onkeyup="searchContact()" style="background:rgba(255,255,255,0.05); margin-bottom:15px;">
+            <input type="text" id="contactSearch" class="input-box" placeholder="Search..." onkeyup="searchContact()" style="background:rgba(255,255,255,0.05);">
             <div class="contact-list" id="list-container"></div>
         </div>
     </div>
 
     <script>
-        let database = { contacts: [] };
+        // Ekhane tomar shob data dewa holo, jate json file-er upore depend na thakte hoy
+        const database = {
+            "contacts": [
+                { "name": "... .....m", "address": "Not available", "number": "016-105-71864" },
+                { "name": "Abdullah Al Shihab", "address": "Not available", "number": "+8801776110432" },
+                { "name": "Abir", "address": "Not available", "number": "+8801815418098" },
+                { "name": "Abir jr", "address": "Not available", "number": "+8801847904912" },
+                { "name": "Abrarul Alam Labib", "address": "Not available", "number": "+8801846-767858" },
+                { "name": "Abu Sallim Rion", "address": "Not available", "number": "+8801617021725" },
+                { "name": "Ahmed Niloy", "address": "Not available", "number": "+8801604797927" },
+                { "name": "Alamgir kb", "address": "Not available", "number": "018-178-01811" },
+                { "name": "Amma", "address": "Not available", "number": "+8801889646601" },
+                { "name": "Antar vai", "address": "Not available", "number": "016-172-87483" },
+                { "name": "Arpita Patranabish", "address": "Not available", "number": "+8801315836505" },
+                { "name": "Atik sir", "address": "Not available", "number": "019-217-94701" },
+                { "name": "Baba", "address": "Not available", "number": "+88001984738578" },
+                { "name": "Boro vai", "address": "Not available", "number": "019-189-26905" },
+                { "name": "emon", "address": "Not available", "number": "018-158-57216" },
+                { "name": "Fahim Ahmed", "address": "Not available", "number": "+8801976495650" },
+                { "name": "Halim", "address": "Not available", "number": "+8801621312757" },
+                { "name": "Hiyad", "address": "Not available", "number": "018-875-39428" },
+                { "name": "LABIB", "address": "Not available", "number": "+8801846767858" },
+                { "name": "Nur md sir", "address": "Not available", "number": "+8801719726312" },
+                { "name": "Razu", "address": "Not available", "number": "+8801759370892" },
+                { "name": "Sabbir Vai", "address": "Not available", "number": "+8801935685030" },
+                { "name": "Sajid", "address": "Not available", "number": "+8801724226219" },
+                { "name": "Tasrif vai", "address": "Not available", "number": "018-672-12360" },
+                { "name": "Tripty Akter", "address": "Not available", "number": "+8801764844473" }
+                // Baki gulo tumi ekhane eki vabe add korte parbe
+            ]
+        };
 
-        // Real-time Fetch from data.json
-        async function loadData() {
-            try {
-                const response = await fetch('data.json'); // Ekhane file theke data nibe
-                if (!response.ok) throw new Error("File not found");
-                database = await response.json();
-                document.getElementById('contact-count').innerText = database.contacts.length + " Records Linked";
-            } catch (err) {
-                console.error("Fetch Error:", err);
-                alert("Critical Error: data.json not found!");
-            }
-        }
-
-        function showLogin() {
-            document.getElementById('start-screen').style.display = 'none';
-            document.getElementById('bg-layer').classList.add('blur-bg');
-            document.getElementById('login-section').style.display = 'flex';
-        }
-
-        async function handleLogin() {
+        function handleLogin() {
             const u = document.getElementById('username').value;
             const p = document.getElementById('password').value;
             if(u === "01885412300" && p === "17648") {
-                await loadData();
                 document.getElementById('login-section').style.display = 'none';
                 document.getElementById('dashboard').style.display = 'flex';
+                document.getElementById('count-text').innerText = database.contacts.length + " Nodes Found";
             } else {
-                alert("AUTH FAILED");
+                alert("WRONG PASSKEY");
             }
         }
 
@@ -197,15 +174,14 @@
             if (data.length === 0) {
                 container.innerHTML = `
                     <div class="not-found">
-                        <i class="fas fa-skull-crossbones"></i>
-                        <h3>NO DATA FOUND</h3>
-                        <p style="font-size:12px; color:#555; margin-top:10px;">The vault is empty for this query.</p>
+                        <i class="fas fa-search-minus"></i>
+                        <h4 style="font-family:'Orbitron';">NO RESULT</h4>
+                        <p style="font-size:12px; color:#555;">Try a different name or number</p>
                     </div>`;
                 return;
             }
             container.innerHTML = data.map(c => `
                 <div class="contact-card">
-                    <div class="contact-icon"><i class="fas fa-user-shield"></i></div>
                     <div class="contact-info">
                         <h4>${c.name}</h4>
                         <p>${c.number}</p>
@@ -216,17 +192,11 @@
         }
 
         function searchContact() {
-            const query = document.getElementById('contactSearch').value.toLowerCase();
+            const q = document.getElementById('contactSearch').value.toLowerCase();
             const filtered = database.contacts.filter(c => 
-                c.name.toLowerCase().includes(query) || 
-                c.number.includes(query)
+                c.name.toLowerCase().includes(q) || c.number.includes(q)
             );
             renderNodes(filtered);
-        }
-
-        function goBack() {
-            document.getElementById('contact-view').style.display = 'none';
-            document.getElementById('dashboard').style.display = 'flex';
         }
     </script>
 </body>
