@@ -3,201 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quantum Vault | Fixed View</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <title>Agricultural University College, Mymensingh</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root {
-            --primary: #00d2ff;
-            --accent: #00ff88;
-            --error: #ff3e3e;
-            --glass: rgba(255, 255, 255, 0.08);
-            --border: rgba(255, 255, 255, 0.15);
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            height: 100vh; overflow: hidden;
-            background: #000; color: white;
-        }
-
-        .bg-container {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), 
-                        url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop') no-repeat center center/cover;
-            z-index: -1;
-        }
-
-        .center-container {
-            width: 100%; height: 100%;
-            display: flex; flex-direction: column;
-            justify-content: center; align-items: center;
-            z-index: 1; padding: 20px;
-        }
-
-        .vault-card {
-            background: var(--glass); backdrop-filter: blur(20px);
-            border: 1px solid var(--border); padding: 40px;
-            border-radius: 30px; width: 100%; max-width: 400px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8); text-align: center;
-        }
-
-        .input-box input {
-            width: 100%; padding: 15px 25px; margin: 12px 0;
-            background: rgba(0, 0, 0, 0.5); border: 1px solid var(--border);
-            border-radius: 50px; color: white; outline: none;
-        }
-
-        .neon-btn {
-            width: 100%; padding: 15px; background: white; color: black;
-            font-weight: 700; border-radius: 50px; border: none;
-            cursor: pointer; font-family: 'Orbitron'; transition: 0.4s;
-        }
-        .neon-btn:hover { background: var(--primary); color: white; box-shadow: 0 0 25px var(--primary); }
-
-        .contact-view-container {
-            display: none; width: 100%; max-width: 600px; height: 85vh;
-            background: rgba(0, 0, 0, 0.95); border-radius: 30px;
-            padding: 25px; border: 1px solid var(--primary); flex-direction: column;
-        }
-
-        .contact-list { overflow-y: auto; flex-grow: 1; margin-top: 10px; padding-right: 5px; }
-        .contact-list::-webkit-scrollbar { width: 4px; }
-        .contact-list::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
-
-        .contact-card {
-            background: rgba(255,255,255,0.03);
-            margin-bottom: 12px; padding: 15px; border-radius: 15px;
-            border: 1px solid var(--border); display: flex; align-items: center;
-            animation: slideUp 0.3s ease;
-        }
-        .contact-info h4 { font-size: 14px; color: #fff; margin-bottom: 2px; }
-        .contact-info p { font-size: 12px; color: var(--primary); font-family: 'Orbitron'; }
-        .contact-address { margin-left: auto; font-size: 10px; color: var(--accent); background: rgba(0,255,136,0.1); padding: 3px 8px; border-radius: 5px; }
-
-        .not-found { text-align: center; padding: 60px 0; }
-        .not-found i { font-size: 3.5rem; color: var(--error); margin-bottom: 15px; }
-
-        @keyframes slideUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        body { background-color: #f0f2f5; font-family: 'Segoe UI', Helvetica, Arial, sans-serif; }
+        .fb-shadow { box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); }
     </style>
 </head>
 <body>
 
-    <div class="bg-container" id="bg-layer"></div>
-
-    <div id="login-section" class="center-container">
-        <div class="vault-card">
-            <h2 style="font-family:'Orbitron'; margin-bottom:25px;">Vault Access</h2>
-            <div class="input-box">
-                <input type="text" id="username" placeholder="Phone ID">
-                <input type="password" id="password" placeholder="Passkey">
+    <div class="max-w-4xl mx-auto bg-white fb-shadow overflow-hidden">
+        <div class="relative h-48 md:h-80 bg-gray-200">
+            <img src="cover.png" alt="Cover Photo" class="w-full h-full object-cover">
+            
+            <div class="absolute -bottom-12 left-4 md:left-8">
+                <img src="profile.png" alt="Profile" class="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-white object-cover bg-white">
             </div>
-            <button class="neon-btn" onclick="handleLogin()">DECRYPT</button>
+        </div>
+
+        <div class="mt-14 px-4 md:px-8 pb-4">
+            <h1 class="text-2xl md:text-3xl font-bold">Agricultural University College, Mymensingh</h1>
+            <div class="flex gap-2 text-gray-600 font-semibold mt-1 text-sm">
+                <span>27K followers</span>
+                <span>•</span>
+                <span>70 following</span>
+            </div>
+            
+            <div class="flex gap-2 mt-4">
+                <button class="bg-[#1877F2] text-white px-6 py-2 rounded-lg font-semibold flex items-center gap-2 hover:bg-blue-700 transition">
+                    <i class="fa-solid fa-link"></i> Contact Us
+                </button>
+                <button class="bg-gray-200 text-black px-6 py-2 rounded-lg font-semibold flex items-center gap-2 hover:bg-gray-300 transition">
+                    <i class="fa-solid fa-bell"></i> Following
+                </button>
+            </div>
+        </div>
+
+        <div class="flex border-t mt-2 px-4 text-gray-600 font-semibold">
+            <button class="px-4 py-4 border-b-4 border-blue-600 text-blue-600">All</button>
+            <button class="px-4 py-4 hover:bg-gray-100 rounded-md">Photos</button>
+            <button class="px-4 py-4 hover:bg-gray-100 rounded-md">Reels</button>
+            <button class="px-4 py-4 hover:bg-gray-100 rounded-md">Mentions</button>
         </div>
     </div>
 
-    <div id="dashboard" class="center-container" style="display:none;">
-        <div class="vault-card" onclick="showModule('contact-view')" style="cursor:pointer;">
-            <i class="fas fa-database fa-3x" style="color:var(--primary); margin-bottom:15px;"></i>
-            <h4 style="font-family: 'Orbitron';">VIEW RECORDS</h4>
-            <p id="count-text" style="font-size:12px; opacity:0.7; margin-top:10px;"></p>
-        </div>
-    </div>
-
-    <div id="contact-view" class="center-container" style="display:none;">
-        <div class="contact-view-container">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
-                <h3 style="font-family:'Orbitron'; color:var(--primary);">Secure Database</h3>
-                <i class="fas fa-times" onclick="location.reload()" style="cursor:pointer;"></i>
+    <div class="max-w-4xl mx-auto mt-4 grid grid-cols-1 md:grid-cols-5 gap-4 px-2 md:px-0">
+        
+        <div class="md:col-span-2 space-y-4">
+            <div class="bg-white p-4 rounded-lg fb-shadow">
+                <h2 class="text-xl font-bold mb-4">Details</h2>
+                <div class="space-y-4">
+                    <div class="flex items-start gap-3">
+                        <i class="fa-solid fa-star text-gray-500 mt-1"></i>
+                        <span>100% recommend (6 reviews)</span>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <i class="fa-solid fa-location-dot text-gray-500 mt-1"></i>
+                        <span>Mymensingh, Dhaka Division, Bangladesh</span>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <i class="fa-solid fa-link text-gray-500 mt-1"></i>
+                        <a href="https://aucm.edu.bd" class="text-blue-600 font-semibold hover:underline">aucm.edu.bd</a>
+                    </div>
+                </div>
             </div>
-            <input type="text" id="contactSearch" class="input-box" placeholder="Search..." onkeyup="searchContact()" style="background:rgba(255,255,255,0.05);">
-            <div class="contact-list" id="list-container"></div>
+        </div>
+
+        <div class="md:col-span-3 space-y-4" id="post-feed">
+            <div class="text-center py-10 text-gray-500">Loading posts...</div>
         </div>
     </div>
 
     <script>
-        // Ekhane tomar shob data dewa holo, jate json file-er upore depend na thakte hoy
-        const database = {
-            "contacts": [
-                { "name": "... .....m", "address": "Not available", "number": "016-105-71864" },
-                { "name": "Abdullah Al Shihab", "address": "Not available", "number": "+8801776110432" },
-                { "name": "Abir", "address": "Not available", "number": "+8801815418098" },
-                { "name": "Abir jr", "address": "Not available", "number": "+8801847904912" },
-                { "name": "Abrarul Alam Labib", "address": "Not available", "number": "+8801846-767858" },
-                { "name": "Abu Sallim Rion", "address": "Not available", "number": "+8801617021725" },
-                { "name": "Ahmed Niloy", "address": "Not available", "number": "+8801604797927" },
-                { "name": "Alamgir kb", "address": "Not available", "number": "018-178-01811" },
-                { "name": "Amma", "address": "Not available", "number": "+8801889646601" },
-                { "name": "Antar vai", "address": "Not available", "number": "016-172-87483" },
-                { "name": "Arpita Patranabish", "address": "Not available", "number": "+8801315836505" },
-                { "name": "Atik sir", "address": "Not available", "number": "019-217-94701" },
-                { "name": "Baba", "address": "Not available", "number": "+88001984738578" },
-                { "name": "Boro vai", "address": "Not available", "number": "019-189-26905" },
-                { "name": "emon", "address": "Not available", "number": "018-158-57216" },
-                { "name": "Fahim Ahmed", "address": "Not available", "number": "+8801976495650" },
-                { "name": "Halim", "address": "Not available", "number": "+8801621312757" },
-                { "name": "Hiyad", "address": "Not available", "number": "018-875-39428" },
-                { "name": "LABIB", "address": "Not available", "number": "+8801846767858" },
-                { "name": "Nur md sir", "address": "Not available", "number": "+8801719726312" },
-                { "name": "Razu", "address": "Not available", "number": "+8801759370892" },
-                { "name": "Sabbir Vai", "address": "Not available", "number": "+8801935685030" },
-                { "name": "Sajid", "address": "Not available", "number": "+8801724226219" },
-                { "name": "Tasrif vai", "address": "Not available", "number": "018-672-12360" },
-                { "name": "Tripty Akter", "address": "Not available", "number": "+8801764844473" }
-                // Baki gulo tumi ekhane eki vabe add korte parbe
-            ]
-        };
+        // Fetching data from posts.json
+        async function loadPosts() {
+            try {
+                const response = await fetch('posts.json');
+                const posts = await response.json();
+                const container = document.getElementById('post-feed');
+                container.innerHTML = ''; // Clear loading text
 
-        function handleLogin() {
-            const u = document.getElementById('username').value;
-            const p = document.getElementById('password').value;
-            if(u === "01885412300" && p === "17648") {
-                document.getElementById('login-section').style.display = 'none';
-                document.getElementById('dashboard').style.display = 'flex';
-                document.getElementById('count-text').innerText = database.contacts.length + " Nodes Found";
-            } else {
-                alert("WRONG PASSKEY");
+                posts.forEach(post => {
+                    const postCard = `
+                        <div class="bg-white rounded-lg fb-shadow overflow-hidden">
+                            <div class="p-4 flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <img src="profile.png" class="w-10 h-10 rounded-full">
+                                    <div>
+                                        <p class="font-bold text-sm hover:underline cursor-pointer">Agricultural University College, Mymensingh</p>
+                                        <p class="text-xs text-gray-500 flex items-center gap-1">
+                                            ${post.time} • <i class="fa-solid fa-earth-americas"></i>
+                                        </p>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-ellipsis text-gray-600"></i>
+                            </div>
+
+                            <div class="px-4 pb-3 text-[15px] leading-snug text-gray-900">
+                                ${post.caption}
+                            </div>
+
+                            ${post.img ? `<img src="${post.img}" class="w-full h-auto border-y">` : ''}
+
+                            <div class="p-3 flex justify-between text-gray-500 border-t mx-4 text-sm font-semibold">
+                                <div class="flex items-center gap-2 cursor-pointer hover:bg-gray-100 p-2 rounded-md flex-1 justify-center transition">
+                                    <i class="fa-regular fa-thumbs-up"></i> Like
+                                </div>
+                                <div class="flex items-center gap-2 cursor-pointer hover:bg-gray-100 p-2 rounded-md flex-1 justify-center transition">
+                                    <i class="fa-regular fa-comment"></i> Comment
+                                </div>
+                                <div class="flex items-center gap-2 cursor-pointer hover:bg-gray-100 p-2 rounded-md flex-1 justify-center transition">
+                                    <i class="fa-solid fa-share"></i> Share
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    container.innerHTML += postCard;
+                });
+            } catch (error) {
+                console.error('Error loading posts:', error);
+                document.getElementById('post-feed').innerHTML = '<p class="text-red-500">Failed to load posts. Make sure posts.json exists.</p>';
             }
         }
 
-        function showModule(id) {
-            document.getElementById('dashboard').style.display = 'none';
-            document.getElementById(id).style.display = 'flex';
-            renderNodes(database.contacts);
-        }
-
-        function renderNodes(data) {
-            const container = document.getElementById('list-container');
-            if (data.length === 0) {
-                container.innerHTML = `
-                    <div class="not-found">
-                        <i class="fas fa-search-minus"></i>
-                        <h4 style="font-family:'Orbitron';">NO RESULT</h4>
-                        <p style="font-size:12px; color:#555;">Try a different name or number</p>
-                    </div>`;
-                return;
-            }
-            container.innerHTML = data.map(c => `
-                <div class="contact-card">
-                    <div class="contact-info">
-                        <h4>${c.name}</h4>
-                        <p>${c.number}</p>
-                    </div>
-                    <div class="contact-address">${c.address}</div>
-                </div>
-            `).join('');
-        }
-
-        function searchContact() {
-            const q = document.getElementById('contactSearch').value.toLowerCase();
-            const filtered = database.contacts.filter(c => 
-                c.name.toLowerCase().includes(q) || c.number.includes(q)
-            );
-            renderNodes(filtered);
-        }
+        window.onload = loadPosts;
     </script>
 </body>
 </html>
